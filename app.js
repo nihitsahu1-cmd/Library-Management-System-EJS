@@ -8,7 +8,7 @@ let nodemailer=require('nodemailer');
 let bcrypt=require('bcrypt');
 let multer = require("multer");
 
-let User = require('./User');
+let User = require('./user');
 let Book = require('./Book');
 let Issue = require('./Issue');
 let History = require('./History');
