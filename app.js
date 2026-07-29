@@ -220,8 +220,8 @@ await User.create({name,email,password: hashedPassword,photo
     ]
 
     });
-*/
-    res.render('success');
+
+    res.render('success');*/
 });
 
 
