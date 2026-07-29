@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Issued Books</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="#">
+            📚 Library Management System
+        </a>
+
+        <div class="d-flex gap-2">
+            <a href="/dashboardStudent" class="btn btn-warning">
+                🏠 Dashboard
+            </a>
+
+             <a href="/dashboardStudent" class="btn btn-success">
+                    Back
+                </a>
+            <a href="/logout" class="btn btn-danger">
+                🚪 Logout
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container py-5">
+
+    <h2 class="text-center mb-5">
+        📚 My Issued Books
+    </h2>
+
+    <% if(issuedBooks.length===0){ %>
+
+        <div class="alert alert-warning text-center">
+            <h4>No Issued Books Found</h4>
+        </div>
+
+    <% }else{ %>
+
+    <div class="row g-4">
+
+        <% issuedBooks.forEach(book=>{ %>
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body">
+
+                    <h4 class="text-primary">
+                        📖 <%= book.bookTitle %>
+                    </h4>
+
+                    <hr>
+
+                    <p>
+                        <strong>Student :</strong>
+                        <%= book.studentName %>
+                    </p>
+
+                    <p>
+                        <strong>Email :</strong>
+                        <%= book.studentEmail %>
+                    </p>
+
+                    <p>
+                        <strong>Issue Date :</strong>
+                        <%= new Date(book.issueDate).toLocaleDateString() %>
+                    </p>
+
+                    <p>
+                        <strong>Return Date :</strong>
+                        <%= new Date(book.returnDate).toLocaleDateString() %>
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-white">
+
+                    <a href="/return-book/<%= book._id %>"
+                       class="btn btn-danger w-100"
+                       onclick="return confirm('Are you sure you want to return this book?')">
+
+                        📚 Return Book
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <% }) %>
+
+    </div>
+
+    <% } %>
+
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    Library Management System | Student Panel
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Books</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+
+    <div class="container">
+
+
+        
+
+        <a class="navbar-brand fw-bold" href="/">
+            📚 Library Management System
+        </a>
+
+        
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+
+            <div class="d-flex gap-2">
+
+                <a href="/dashboardStudent" class="btn btn-warning">
+                    🏠 Dashboard
+                </a>
+
+                <a href="/dashboardStudent" class="btn btn-secondary">
+                    Back
+                </a>
+                 
+
+                <a href="/logout" class="btn btn-danger">
+                    🚪 Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container py-4">
+
+    <!-- Welcome -->
+    <div class="alert alert-success shadow text-center">
+
+        <h4>
+            Welcome <strong><%= user.name %></strong> 👋
+        </h4>
+
+        <p class="mb-0">
+            <%= user.email %>
+        </p>
+
+    </div>
+
+    <!-- Message -->
+    <% if(typeof message !== "undefined" && message){ %>
+
+        <div class="alert alert-danger alert-dismissible fade show">
+
+            <%= message %>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    <% } %>
+
+    <!-- Heading -->
+    <h2 class="text-center text-primary fw-bold mb-4">
+
+        📚 Available Books
+
+    </h2>
+
+    <!-- Books -->
+    <div class="row">
+
+        <% books.forEach(book => { %>
+
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+
+            <div class="card shadow h-100">
+
+                <!-- Image -->
+                <div class="bg-light text-center p-3">
+
+                    <img src="/uploads/<%= book.photo %>"
+                         class="img-fluid rounded"
+                         style="height:260px; object-fit:contain;"
+                         alt="Book">
+
+                </div>
+
+                <!-- Body -->
+                <div class="card-body text-center">
+
+                    <h5 class="fw-bold text-primary">
+
+                        📖 <%= book.title %>
+
+                    </h5>
+
+                    <hr>
+
+                    <p>
+
+                        <strong>Author</strong><br>
+
+                        <%= book.author %>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Available</strong><br>
+
+                        <% if(book.quantity>0){ %>
+
+                            <span class="badge bg-success fs-6">
+
+                                <%= book.quantity %>
+
+                            </span>
+
+                        <% }else{ %>
+
+                            <span class="badge bg-danger fs-6">
+
+                                Out of Stock
+
+                            </span>
+
+                        <% } %>
+
+                    </p>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer bg-white border-0">
+
+                    <% if(book.quantity>0){ %>
+
+                        <a href="/issueBooks/<%= book._id %>"
+                           class="btn btn-success w-100">
+
+                            📚 Issue Book
+
+                        </a>
+
+                    <% }else{ %>
+
+                        <button class="btn btn-secondary w-100" disabled>
+
+                            ❌ Not Available
+
+                        </button>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <% }) %>
+
+    </div>
+
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-4">
+
+    <h5 class="mb-1">
+        📚 Library Management System
+    </h5>
+
+    <small>Student Panel</small>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

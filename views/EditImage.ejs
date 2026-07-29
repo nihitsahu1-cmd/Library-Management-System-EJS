@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile Picture</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+    <div class="card shadow-lg p-4" style="width: 400px; border-radius:15px;">
+
+        <h3 class="text-center mb-4">Edit Profile Picture</h3>
+
+        <div class="text-center mb-4">
+            <img src="/uploads/<%= user.photo %>"
+                 class="rounded-circle border border-3 border-primary"
+                 width="160"
+                 height="160"
+                 style="object-fit: cover;">
+        </div>
+
+        <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    Select New Profile Picture
+                </label>
+
+                <input
+                    type="file"
+                    name="photo"
+                    class="form-control"
+                    accept="image/*"
+                    required>
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-primary">
+                    Update Photo
+                </button>
+            </div>
+
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="/dashboardStudent" class="btn btn-outline-secondary">
+                Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
