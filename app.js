@@ -202,7 +202,7 @@ const hashedPassword = await bcrypt.hash(password, 10);
 
 await User.create({name,email,password: hashedPassword,photo
 });
-    await transporter.sendMail({
+     /*await transporter.sendMail({
         from: '"Nihit Sahu" <nihitsahu1@gmail.com>',
         to: email,
         subject: "Library Registration Successful",
@@ -220,7 +220,7 @@ await User.create({name,email,password: hashedPassword,photo
     ]
 
     });
-
+*/
     res.render('success');
 });
 
